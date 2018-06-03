@@ -6,7 +6,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerPopupComponent } from './datepicker-popup/datepicker-popup.component';
-
+import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+   
 
 
 
@@ -21,6 +23,8 @@ import { DatepickerPopupComponent } from './datepicker-popup/datepicker-popup.co
   imports: [
     BrowserModule,
     FormsModule,    //added here too
+    HttpClientModule,
+    HttpModule,
     ReactiveFormsModule,
     NgbModule.forRoot()
     
