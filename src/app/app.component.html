@@ -1,102 +1,110 @@
 <header>
-    <div class="container">
-      <div class="alert alert-dark">Flight Search Engine </div>
-    </div>
+  <div class="container">
+    <div class="alert alert-dark">Flight Search Engine </div>
+  </div>
 </header>
 
-<div class="container content"> <!-- container centers content on large screens -->
-  <div class="row">             <!-- responsive row has 12 columns by default -->
-    <div class="col-md-4"> 
-     <form [formGroup]="searchForm" >
+<div class="container content">
+  <!-- container centers content on large screens -->
+  <div class="row">
+    <!-- responsive row has 12 columns by default -->
+    <div class="col-md-4">
+      <form [formGroup]="searchForm">
 
-     <!-- uses 6 columns on medium and larger screens... -->
-          <ngb-tabset>
-            <ngb-tab title="One Way">
-              <ng-template ngbTabContent>
-                <div class="form-group">
-                  <label class="center-block">
+        <!-- uses 6 columns on medium and larger screens... -->
+        <ngb-tabset>
+          <ngb-tab title="One Way">
+            <ng-template ngbTabContent>
+              <div class="form-group">
+                <label class="center-block">
                     <input class="form-control" formControlName="city" placeholder="Enter Origin city">
                   </label>
-                </div>
-                <div class="form-group">
-                  <label class="center-block">
+              </div>
+              <div class="form-group">
+                <label class="center-block">
                     <input class="form-control" formControlName="destcity" placeholder="Enter destination city">
                   </label>
-                </div>
-               <div class="form-group">
-                  <label class="center-block">
+              </div>
+              <div class="form-group">
+                <label class="center-block">
                         <input type="date"  class="form-control"formControlName="departDate">
                   </label>
-                </div>
-                <div class="form-group">
-                  <label class="center-block">
+              </div>
+              <div class="form-group">
+                <label class="center-block">
                     <input class="form-control" formControlName="passan" placeholder="Enter No of passangers">
                   </label>
+              </div>
+
+            
+              <div class="form-group">
+                <button class="btn btn-primary" (click)="getFlightRec();">Search</button>
+              </div>
+
+            
+              <div class="form-group">
+                <p>Refine Flight Search</p>
+                <div class="card">
+                  <div class="card-body">
+                    <div>70%</div>
+                  </div>
                 </div>
+              </div>
 
-                 <div class="form-group">
-                        <button  class="btn btn-primary" (click)="getFlightRec();">Search</button>
-                  </div>
 
-                 <div class="form-group">
-                   <p>Refine Flight Search</p>
-                    <div class="card">
-                          <div class="card-body">
-                               <div  >70%</div>
-                          </div>
-                    </div>
-                </div>
-
-              
-              </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Return">
-              <ng-template ngbTabContent>
-                <div class="form-group">
-                  <label class="center-block">
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Return">
+            <ng-template ngbTabContent>
+              <div class="form-group">
+                <label class="center-block">
                     <input class="form-control" formControlName="city" placeholder="Enter Origin city">
                   </label>
-                </div>
-                <div class="form-group">
-                  <label class="center-block">
+              </div>
+              <div class="form-group">
+                <label class="center-block">
                     <input class="form-control" formControlName="destcity" placeholder="Enter destination city">
                   </label>
-                </div>
-               <div class="form-group">
-                  <label class="center-block">
+              </div>
+              <div class="form-group">
+                <label class="center-block">
                     <input type= "date" class="form-control" formControlName="departDate" placeholder="Departure Date">
                   </label>
-                </div>
-                <div class="form-group">
-                  <label class="center-block">
+              </div>
+              <div class="form-group">
+                <label class="center-block">
                     <input type="date" class="form-control" formControlName="rettDate" placeholder="Return Date">
                   </label>
-                </div>
-                <div class="form-group">
-                  <label class="center-block">
+              </div>
+              <div class="form-group">
+                <label class="center-block">
                     <input class="form-control" formControlName="passan" placeholder="Enter No of passangers">
                   </label>
+              </div>
+
+            
+              <div class="form-group">
+                <button class="btn btn-primary" (click)="getFlightRec();">Search</button>
+              </div>
+            
+              <div class="form-group">
+                <p>Refine Flight Search</p>
+                <div class="card">
                 </div>
-
-                    <div class="form-group">
-                        <button  class="btn btn-primary" (click)="getFlightRec();">Search</button>
-                    </div>
-                     <div class="form-group">
-                          <p>Refine Flight Search</p>
-                            <div class="card">
-                            </div>
-                        </div>
+              </div>
 
 
 
-              </ng-template>
-            </ngb-tab>     
+            </ng-template>
+          </ngb-tab>
         </ngb-tabset>
-                      </form>
+      </form>
 
     </div>
-    <div class="col-md-8">      <!-- uses 12 columns on smaller than medium screens -->
-    <div class="row" *ngFor="let flightRes of flightdata">
+    <div class="col-md-8">
+      <!-- uses 12 columns on smaller than medium screens -->
+
+      <div class="row" *ngFor="let flightRes of flightdata">
         <div class="col-md-12 card">
           <div class="row">{{flightRes.price}}</div>
           <div class="row">    
