@@ -26,13 +26,22 @@
       },
 	  
 	  {
-      "id": 3,
+      "id": 4,
       "flightName": "A1-204",
       "origincity": "Banglore",
       "desinationcity": "Delhi",
 	  "departTime":"10 AM",
 	  "arriveTime":"12 AM"
+      },
+	   {
+      "id": 5,
+      "flightName": "A1-206",
+      "origincity": "Banglore",
+      "desinationcity": "Pune",
+	  "departTime":"10 AM",
+	  "arriveTime":"12 AM"
       }
+
   ]
 }
 

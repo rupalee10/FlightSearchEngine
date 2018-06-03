@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders ,HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from "rxjs";
 import { from } from 'rxjs';
-import {FlightData} from './flightData';
- 
+import { FlightData } from './flightData';
+
 const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 
@@ -22,41 +22,22 @@ const API_URL = environment.apiUrl;
 
 
 export class ApiService {
-restItems;
+  restItems;
   constructor(private http: HttpClient) {
-
-    
-   }
-
-   
- getFlightRes() {
-   
-    this.restFlightsServiceData()
-      .subscribe(
-        restItems => {
-          this.restItems = restItems;
-         // console.log(this.restItems);
-        }
-      )
-      
   }
-
   // Rest Items Service: Read all REST Items
-  restFlightsServiceData():Observable<FlightData[]> {
+  restFlightsServiceData(city,destcity): Observable<FlightData[]> {
+    console.log('Objcject', city);
+    let Params = new HttpParams().set('origincity', city)
+                .set('desinationcity',destcity);
+
+
     return this.http
-      .get<any[]>(API_URL+ '/flights')
+      .get<any[]>(API_URL + '/flights',{params:Params})
       .pipe(map(data => data));
   }
 
-   /** GET heroes from the server */
-  getAllFlightData() {
-    alert('calling from service');
-        return this.http
-      .get<any[]>(API_URL + '/flights')
-      .pipe(map(data => data));
-  }
-
-  }
+ }
 
 
 /*getAllFlightData():Observable<FlightData[]>{

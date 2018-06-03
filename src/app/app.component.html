@@ -17,12 +17,12 @@
             <ng-template ngbTabContent>
               <div class="form-group">
                 <label class="center-block">
-                    <input class="form-control" formControlName="city" placeholder="Enter Origin city">
+                    <input class="form-control" #orgName  formControlName="city" placeholder="Enter Origin city">
                   </label>
               </div>
               <div class="form-group">
                 <label class="center-block">
-                    <input class="form-control" formControlName="destcity" placeholder="Enter destination city">
+                    <input class="form-control" #destName formControlName="destcity" placeholder="Enter destination city">
                   </label>
               </div>
               <div class="form-group">
@@ -38,7 +38,7 @@
 
             
               <div class="form-group">
-                <button class="btn btn-primary" (click)="getFlightRec();">Search</button>
+                <button class="btn btn-primary" (click)="getFlightRec(searchForm.value);">Search</button>
               </div>
 
             
