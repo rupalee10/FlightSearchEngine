@@ -1,0 +1,50 @@
+  {
+  "flights": [
+    
+      {
+        "id": 1,
+        "flightName": "A1-202",
+        "origincity": "Pune",
+        "desinationcity": "Delhi",
+        "departTime": "10 AM",
+        "arriveTime": "12 AM",
+		"ret":"PUNDEL"
+      },
+      {
+        "id": 1,
+        "flightName": "A1-202",
+        "origincity": "Delhi",
+        "desinationcity": "Pune",
+        "departTime": "14 AM",
+        "arriveTime": "16 AM",
+		"ret":"PUNDEL"
+  
+
+      },
+    
+    
+      {
+        "id": 1,
+        "flightName": "A1-202",
+        "origincity": "Pune",
+        "desinationcity": "Banglore",
+        "departTime": "10 AM",
+        "arriveTime": "12 AM",	
+		"ret":"PUNBANG"
+  
+
+		
+      },
+      {
+        "id": 1,
+        "flightName": "A1-202",
+        "origincity": "Banglore",
+        "desinationcity": "Pune",
+        "departTime": "10 AM",
+        "arriveTime": "12 AM",
+		"ret":"PUNBANG"
+
+      }
+    
+  ]
+}
