@@ -5,6 +5,9 @@
 </header>
 
 <div class="container content">
+  <div class="alert alert-danger">
+    <p> {{fetchRecStatus}}</p>
+  </div>
   <!-- container centers content on large screens -->
   <div class="row">
     <!-- responsive row has 12 columns by default -->
@@ -17,31 +20,36 @@
             <ng-template ngbTabContent>
               <div class="form-group">
                 <label class="center-block">
-                    <input class="form-control" #orgName  formControlName="city" placeholder="Enter Origin city">
+                    <input class="form-control" #orgName  formControlName="city" placeholder="Enter Origin city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" >
+                    <div *ngIf=" f.city.errors" class="invalid-feedback"></div>
                   </label>
               </div>
               <div class="form-group">
                 <label class="center-block">
-                    <input class="form-control" #destName formControlName="destcity" placeholder="Enter destination city">
+                    <input class="form-control" #destName formControlName="destcity" placeholder="Enter destination city" [ngClass]="{ 'is-invalid': submitted && f.destcity.errors }">
+                    <div *ngIf=" f.destcity.errors" class="invalid-feedback"></div>
+
                   </label>
               </div>
               <div class="form-group">
                 <label class="center-block">
-                        <input type="date"  class="form-control"formControlName="departDate">
+                        <input type="date"  class="form-control"formControlName="departDate" [ngClass]="{ 'is-invalid': submitted && f.departDate.errors }">
+                         <div *ngIf=" f.destcity.errors" class="invalid-feedback"></div>
                   </label>
               </div>
               <div class="form-group">
                 <label class="center-block">
-                    <input class="form-control" formControlName="passan" placeholder="Enter No of passangers">
+                    <input class="form-control" formControlName="passan" placeholder="Enter No of passangers" [ngClass]="{ 'is-invalid': submitted && f.passan.errors }">
+                    <div *ngIf=" f.passan.errors" class="invalid-feedback"></div>
                   </label>
               </div>
 
-            
+
               <div class="form-group">
-                <button class="btn btn-primary" (click)="getFlightRec(searchForm.value);">Search</button>
+                <button class="btn btn-primary" (click)="getFlightRec(orgName.value,destName.value);">Search</button>
               </div>
 
-            
+
               <div class="form-group">
                 <p>Refine Flight Search</p>
                 <div class="card">
@@ -58,22 +66,22 @@
             <ng-template ngbTabContent>
               <div class="form-group">
                 <label class="center-block">
-                    <input class="form-control" formControlName="city" placeholder="Enter Origin city">
+                    <input class="form-control" #orgName formControlName="city" placeholder="Enter Origin city">
                   </label>
               </div>
               <div class="form-group">
                 <label class="center-block">
-                    <input class="form-control" formControlName="destcity" placeholder="Enter destination city">
+                    <input class="form-control" #destName formControlName="destcity" placeholder="Enter destination city">
                   </label>
               </div>
               <div class="form-group">
                 <label class="center-block">
-                    <input type= "date" class="form-control" formControlName="departDate" placeholder="Departure Date">
+                    <input type= "date" class="form-control" #departDate formControlName="departDate" placeholder="Departure Date">
                   </label>
               </div>
               <div class="form-group">
                 <label class="center-block">
-                    <input type="date" class="form-control" formControlName="rettDate" placeholder="Return Date">
+                    <input type="date" class="form-control" #rettDate formControlName="rettDate" placeholder="Return Date">
                   </label>
               </div>
               <div class="form-group">
@@ -82,19 +90,16 @@
                   </label>
               </div>
 
-            
+
               <div class="form-group">
-                <button class="btn btn-primary" (click)="getFlightRec();">Search</button>
+                <button class="btn btn-primary" (click)="getFlightRec(orgName.value,destName.value,departDate.value,rettDate.value);">Search</button>
               </div>
-            
+
               <div class="form-group">
                 <p>Refine Flight Search</p>
                 <div class="card">
                 </div>
               </div>
-
-
-
             </ng-template>
           </ngb-tab>
         </ngb-tabset>
@@ -107,23 +112,21 @@
       <div class="row" *ngFor="let flightRes of flightdata">
         <div class="col-md-12 card">
           <div class="row">{{flightRes.price}}</div>
-          <div class="row">    
+          <div class="row">
             <div class="col-md-4">
-               <p> <span> {{flightRes.flightName}}</span><br>
+              <p> <span> {{flightRes.flightName}}</span><br>
                 <span> {{flightRes.origincity}} > {{flightRes.desinationcity}}</span><br>
                 <span>Depart: {{flightRes.departTime}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span>Arrive: {{flightRes.arriveTime}}</span>
-               </p>
-              </div>      
-             
+              </p>
+            </div>
+
           </div>
-  
+
         </div>
-    </div>
+      </div>
     </div>
   </div>
 </div>
-<p>Form value: {{ searchForm.value | json }}</p>
-
-
+<p>Form value {{ searchForm.value | json }} </p>
 <footer></footer>

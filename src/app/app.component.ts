@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'aad';
-  // flightRes = FLIGHTREC;
+  fetchRecStatus;
   flightdata;
   data;
 
@@ -19,23 +19,47 @@ export class AppComponent {
   name;
   searchForm: FormGroup;
   submitted = false;
+  public ret;
 
   constructor(private formBuilder: FormBuilder, private fs: FlightService, private api: ApiService, private http: HttpClient) {
     this.createForm();
   }
-    
 
 
-   getFlightRec(name,destName): void {
-    //this.flightdata = this.fs.getFlightRec();
-   // alert(origincity);
-    this.api.restFlightsServiceData(name,destName)
-      .subscribe(
-      restItems => {
-        this.flightdata = restItems;
-        // console.log(this.restItems);
-      }
-      )
+    get f() { return this.searchForm.controls; }
+
+  getFlightRec(name, destName, rettDate): void {
+    this.submitted = true;
+    if (rettDate!=undefined && name == 'Pune' && destName == 'Delhi') {
+      this.ret = 'PUNDEL';
+      this.api.getData(this.ret)
+        .subscribe(
+        restItems => {
+          this.flightdata = restItems;
+        })
+
+
+    }
+    else if (rettDate!=undefined && name == 'Pune' && destName == 'Banglore') {
+      this.ret = 'PUNBANG';
+      this.api.getData(this.ret)
+        .subscribe(
+        restItems => {
+          this.flightdata = restItems;
+        })
+
+
+    }
+    else {
+      this.api.restFlightsServiceData(name, destName)
+        .subscribe(
+        restItems => {
+          this.flightdata = restItems;  
+            if(this.flightdata==""){
+              this.fetchRecStatus='Flights are not available';
+            }
+         })
+    }
   }
 
   createForm() {
