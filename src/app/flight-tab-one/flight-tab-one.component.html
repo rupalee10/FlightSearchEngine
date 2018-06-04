@@ -1,0 +1,42 @@
+ 
+ <div *ngIf="searchForm"> 
+ <form [formGroup]="searchForm" >
+                            <div class="form-group">
+                                <label class="center-block">
+                                    <input class="form-control" #orgName formControlName="origincity" placeholder="Enter Origin city" [ngClass]="{ 'is-invalid': submitted && f.origincity.errors }">
+                                    <div *ngIf=" f.origincity.errors" class="invalid-feedback"></div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="center-block">
+                                    <input class="form-control" #destName formControlName="desinationcity" placeholder="Enter destination city" [ngClass]="{ 'is-invalid': submitted && f.desinationcity.errors }">
+                                    <div *ngIf=" f.desinationcity.errors" class="invalid-feedback"></div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="center-block">
+                                    <input type="date" class="form-control" formControlName="departDate" [ngClass]="{ 'is-invalid': submitted && f.departDate.errors }">
+                                    <div *ngIf=" f.departDate.errors" class="invalid-feedback"></div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="center-block">
+                                    <input class="form-control" formControlName="passan" placeholder="Enter No of passangers" [ngClass]="{ 'is-invalid': submitted && f.passan.errors }">
+                                    <div *ngIf=" f.passan.errors" class="invalid-feedback"></div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" (click)="getFlightRec(orgName.value,destName.value);">Search</button>
+                            </div>
+                            <div class="form-group">
+                                <p>Refine Flight Search</p>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div>70%</div>
+                                    </div>
+                                </div>
+                            </div>
+                          </form>
+ </div>
+ 
+

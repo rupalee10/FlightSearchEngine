@@ -1,132 +1,56 @@
 <header>
-  <div class="container">
-    <div class="alert alert-dark">Flight Search Engine </div>
-  </div>
+    <div class="container">
+        <div class="alert alert-dark">Flight Search Engine </div>
+    </div>
+    <aad-flight-tab-one (shareDataToParent)="childData=$event"></aad-flight-tab-one>
 </header>
-
 <div class="container content">
-  <div class="alert alert-danger">
-    <p> {{fetchRecStatus}}</p>
-  </div>
-  <!-- container centers content on large screens -->
-  <div class="row">
-    <!-- responsive row has 12 columns by default -->
-    <div class="col-md-4">
-      <form [formGroup]="searchForm">
-
-        <!-- uses 6 columns on medium and larger screens... -->
-        <ngb-tabset>
-          <ngb-tab title="One Way">
-            <ng-template ngbTabContent>
-              <div class="form-group">
-                <label class="center-block">
-                    <input class="form-control" #orgName  formControlName="city" placeholder="Enter Origin city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" >
-                    <div *ngIf=" f.city.errors" class="invalid-feedback"></div>
-                  </label>
-              </div>
-              <div class="form-group">
-                <label class="center-block">
-                    <input class="form-control" #destName formControlName="destcity" placeholder="Enter destination city" [ngClass]="{ 'is-invalid': submitted && f.destcity.errors }">
-                    <div *ngIf=" f.destcity.errors" class="invalid-feedback"></div>
-
-                  </label>
-              </div>
-              <div class="form-group">
-                <label class="center-block">
-                        <input type="date"  class="form-control"formControlName="departDate" [ngClass]="{ 'is-invalid': submitted && f.departDate.errors }">
-                         <div *ngIf=" f.destcity.errors" class="invalid-feedback"></div>
-                  </label>
-              </div>
-              <div class="form-group">
-                <label class="center-block">
-                    <input class="form-control" formControlName="passan" placeholder="Enter No of passangers" [ngClass]="{ 'is-invalid': submitted && f.passan.errors }">
-                    <div *ngIf=" f.passan.errors" class="invalid-feedback"></div>
-                  </label>
-              </div>
-
-
-              <div class="form-group">
-                <button class="btn btn-primary" (click)="getFlightRec(orgName.value,destName.value);">Search</button>
-              </div>
-
-
-              <div class="form-group">
-                <p>Refine Flight Search</p>
-                <div class="card">
-                  <div class="card-body">
-                    <div>70%</div>
-                  </div>
-                </div>
-              </div>
-
-
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab title="Return">
-            <ng-template ngbTabContent>
-              <div class="form-group">
-                <label class="center-block">
-                    <input class="form-control" #orgName formControlName="city" placeholder="Enter Origin city">
-                  </label>
-              </div>
-              <div class="form-group">
-                <label class="center-block">
-                    <input class="form-control" #destName formControlName="destcity" placeholder="Enter destination city">
-                  </label>
-              </div>
-              <div class="form-group">
-                <label class="center-block">
-                    <input type= "date" class="form-control" #departDate formControlName="departDate" placeholder="Departure Date">
-                  </label>
-              </div>
-              <div class="form-group">
-                <label class="center-block">
-                    <input type="date" class="form-control" #rettDate formControlName="rettDate" placeholder="Return Date">
-                  </label>
-              </div>
-              <div class="form-group">
-                <label class="center-block">
-                    <input class="form-control" formControlName="passan" placeholder="Enter No of passangers">
-                  </label>
-              </div>
-
-
-              <div class="form-group">
-                <button class="btn btn-primary" (click)="getFlightRec(orgName.value,destName.value,departDate.value,rettDate.value);">Search</button>
-              </div>
-
-              <div class="form-group">
-                <p>Refine Flight Search</p>
-                <div class="card">
-                </div>
-              </div>
-            </ng-template>
-          </ngb-tab>
-        </ngb-tabset>
-      </form>
-
+    <div class="alert alert-danger">
+        <p> {{fetchRecStatus}}</p>{{childData}}veraj
     </div>
-    <div class="col-md-8">
-      <!-- uses 12 columns on smaller than medium screens -->
+    <!-- container centers content on large screens -->
 
-      <div class="row" *ngFor="let flightRes of flightdata">
-        <div class="col-md-12 card">
-          <div class="row">{{flightRes.price}}</div>
-          <div class="row">
-            <div class="col-md-4">
-              <p> <span> {{flightRes.flightName}}</span><br>
-                <span> {{flightRes.origincity}} > {{flightRes.desinationcity}}</span><br>
-                <span>Depart: {{flightRes.departTime}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span>Arrive: {{flightRes.arriveTime}}</span>
-              </p>
-            </div>
-
-          </div>
-
+    <div class="row">
+        <!-- responsive row has 12 columns by default -->
+        <div class="col-md-4">
+      
+                <!-- uses 6 columns on medium and larger screens... -->
+                <ngb-tabset>
+                    <ngb-tab title="One Way">
+                        <ng-template ngbTabContent>
+                          <aad-flight-tab-one></aad-flight-tab-one>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Return">
+                        <ng-template ngbTabContent >     
+                         <aad-flight-tab>      </aad-flight-tab>            
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
         </div>
-      </div>
+        <div class="col-md-8">
+            <!-- uses 12 columns on smaller than medium screens -->
+            <div class="row" *ngFor="let flightRes of flightdata">
+                <div class="col-md-12 card">
+                    <div class="row">{{flightRes.price}}</div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>
+                                <span> {{flightRes.flightName}}</span>
+                                <br>
+                                <span> {{flightRes.origincity}} > {{flightRes.desinationcity}}</span>
+                                <br>
+                                <span>Depart: {{flightRes.departTime}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <span>Arrive: {{flightRes.arriveTime}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-<p>Form value {{ searchForm.value | json }} </p>
-<footer></footer>
+<footer>
+
+
+</footer>

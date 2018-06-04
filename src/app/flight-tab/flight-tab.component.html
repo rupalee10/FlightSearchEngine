@@ -1,0 +1,67 @@
+                         <form [formGroup]="searchRetForm">
+
+
+                            <div class="form-group">
+                                <label class="center-block">
+                                    <input class="form-control" #orgName formControlName="origincity" placeholder="Enter Origin city" [ngClass]="{ 'is-invalid': submitted && fr.origincity.errors }">
+                                    <div *ngIf=" fr.origincity.errors" class="invalid-feedback"></div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="center-block">
+                                    <input class="form-control" #destName formControlName="desinationcity" placeholder="Enter destination city" [ngClass]="{ 'is-invalid': submitted && fr.desinationcity.errors }">
+                                    <div *ngIf=" fr.desinationcity.errors" class="invalid-feedback"></div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="center-block">
+                                    <input type="date" class="form-control" #departDate formControlName="departDate" placeholder="Departure Date" [ngClass]="{ 'is-invalid': submitted && fr.departDate.errors }">
+                                    <div *ngIf=" fr.departDate.errors" class="invalid-feedback"></div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="center-block">
+                                    <input type="date" class="form-control" #rettDate formControlName="rettDate" placeholder="Return Date" [ngClass]="{ 'is-invalid': submitted && fr.rettDate.errors }">
+                                    <div *ngIf=" fr.rettDate.errors" class="invalid-feedback"></div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="center-block">
+                                    <input class="form-control" formControlName="passan" placeholder="Enter No of passangers" [ngClass]="{ 'is-invalid': submitted && fr.passan.errors }">
+                                    <div *ngIf=" fr.passan.errors" class="invalid-feedback"></div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" (click)="getFlightRec(orgName.value,destName.value,departDate.value,rettDate.value);">Search</button>
+                            </div>
+                            <div class="form-group">
+                                <p>Refine Flight Search</p>
+                                <div class="card"></div>
+                            </div>
+                        </form>
+
+
+            <div class="col-md-8">
+            <!-- uses 12 columns on smaller than medium screens -->
+            <div class="row" *ngFor="let flightRes of flightdata">
+                <div class="col-md-12 card">
+                    <div class="row">{{flightRes.price}}</div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>
+                                <span> {{flightRes.flightName}}</span>
+                                <br>
+                                <span> {{flightRes.origincity}} > {{flightRes.desinationcity}}</span>
+                                <br>
+                                <span>Depart: {{flightRes.departTime}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <span>Arrive: {{flightRes.arriveTime}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                        
+ 
+Data is{{flightdata}}
