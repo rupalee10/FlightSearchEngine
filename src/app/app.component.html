@@ -2,11 +2,9 @@
     <div class="container">
         <div class="alert alert-dark">Flight Search Engine </div>
     </div>
-    <aad-flight-tab-one (shareDataToParent)="childData=$event"></aad-flight-tab-one>
 </header>
 <div class="container content">
     <div class="alert alert-danger">
-        <p> {{fetchRecStatus}}</p>{{childData}}veraj
     </div>
     <!-- container centers content on large screens -->
 
@@ -18,16 +16,48 @@
                 <ngb-tabset>
                     <ngb-tab title="One Way">
                         <ng-template ngbTabContent>
-                          <aad-flight-tab-one></aad-flight-tab-one>
+                          <aad-flight-tab-one (shareDataToParent)="shareDataToParent($event)"></aad-flight-tab-one>
                         </ng-template>
                     </ngb-tab>
                     <ngb-tab title="Return">
                         <ng-template ngbTabContent >     
-                         <aad-flight-tab>      </aad-flight-tab>            
+                         <aad-flight-tab (shareDataToParent)="shareDataToParent($event)"></aad-flight-tab>            
                         </ng-template>
                     </ngb-tab>
                 </ngb-tabset>
         </div>
+        <div class="container">
+        <div class="col-md-4">    
+    <ion-range-slider #sliderElement
+          type="double"
+          [min]="myMinVar"
+          max="50000"
+          from="45000"
+          from_min="1000"
+          from_max="30"
+          from_shadow="true"
+          to="50000"
+          to_min="1000"
+          to_max="45000"
+          to_shadow="true"
+          grid="true"
+          grid_num="10"
+          prefix="Rs: "
+          postfix=" "
+          decorate_both="false"
+          (onUpdate)="update(sliderElement,$event)"
+          (onChange)="update(sliderElement,$event)"
+          (onFinish)="finish(sliderElement,$event)"></ion-range-slider>
+        </div>
+    <div>
+      <h2>onUpdate</h2>
+      <!--<pre>{{sliderElement.onUpdate | json}}</pre>-->
+    </div>
+  
+
+
+        </div>
+            
         <div class="col-md-8">
             <!-- uses 12 columns on smaller than medium screens -->
             <div class="row" *ngFor="let flightRes of flightdata">

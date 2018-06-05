@@ -34,34 +34,9 @@
                             <div class="form-group">
                                 <button class="btn btn-primary" (click)="getFlightRec(orgName.value,destName.value,departDate.value,rettDate.value);">Search</button>
                             </div>
-                            <div class="form-group">
-                                <p>Refine Flight Search</p>
-                                <div class="card"></div>
-                            </div>
                         </form>
 
 
-            <div class="col-md-8">
-            <!-- uses 12 columns on smaller than medium screens -->
-            <div class="row" *ngFor="let flightRes of flightdata">
-                <div class="col-md-12 card">
-                    <div class="row">{{flightRes.price}}</div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p>
-                                <span> {{flightRes.flightName}}</span>
-                                <br>
-                                <span> {{flightRes.origincity}} > {{flightRes.desinationcity}}</span>
-                                <br>
-                                <span>Depart: {{flightRes.departTime}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <span>Arrive: {{flightRes.arriveTime}}</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+         
                         
  
-Data is{{flightdata}}

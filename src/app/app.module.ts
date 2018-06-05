@@ -10,6 +10,8 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FlightTabComponent } from './flight-tab/flight-tab.component';
 import { FlightTabOneComponent } from './flight-tab-one/flight-tab-one.component';
+import { IonRangeSliderModule } from "ng2-ion-range-slider";
+
 
 
    
@@ -27,6 +29,7 @@ import { FlightTabOneComponent } from './flight-tab-one/flight-tab-one.component
     HttpClientModule,
     HttpModule,
     ReactiveFormsModule,
+    IonRangeSliderModule,
     NgbModule.forRoot()
     
   ],

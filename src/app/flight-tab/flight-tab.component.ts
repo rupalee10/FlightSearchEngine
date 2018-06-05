@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input,Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators ,FormControl} from '@angular/forms';
 import { FlightService } from '../flight.service';
 import { ApiService } from '../api.service';
@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./flight-tab.component.scss']
 })
 export class FlightTabComponent implements OnInit {
+   @Output() shareDataToParent = new EventEmitter<any>();
  fetchRecStatus;
   flightdata;
   data;
@@ -52,6 +53,8 @@ export class FlightTabComponent implements OnInit {
         .subscribe(
         restItems => {
           this.flightdata = restItems;
+          this.shareDataToParent.emit(restItems);
+
         })
 
 
@@ -62,6 +65,8 @@ export class FlightTabComponent implements OnInit {
         .subscribe(
         restItems => {
           this.flightdata = restItems;
+          this.shareDataToParent.emit(restItems);
+
         })
 
 
@@ -71,6 +76,8 @@ export class FlightTabComponent implements OnInit {
         .subscribe(
         restItems => {
           this.flightdata = restItems;  
+          this.shareDataToParent.emit(restItems);
+
             if(this.flightdata==""){
               this.fetchRecStatus='Flights are not available';
             }
