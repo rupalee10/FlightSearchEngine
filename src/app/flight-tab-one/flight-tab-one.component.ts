@@ -4,6 +4,7 @@ import { FlightService } from '../flight.service';
 import { ApiService } from '../api.service';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'aad-flight-tab-one',
   templateUrl: './flight-tab-one.component.html',
@@ -11,7 +12,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FlightTabOneComponent implements OnInit {
    //@Input() name: string;
- @Output() shareDataToParent = new EventEmitter();
+ @Output() shareDataToParent = new EventEmitter<any>();
+ 
 
   fetchRecStatus;
   flightdata;
@@ -63,7 +65,7 @@ constructor(private formBuilder: FormBuilder, private fs: FlightService, private
         .subscribe(
         restItems => {
           this.flightdata = restItems;
-               this.shareDataToParent.emit(this.flightdata);
+               this.shareDataToParent.emit(restItems);
 
         })
 
@@ -75,7 +77,7 @@ constructor(private formBuilder: FormBuilder, private fs: FlightService, private
         .subscribe(
         restItems => {
           this.flightdata = restItems;
-         this.shareDataToParent.emit(this.flightdata);
+         this.shareDataToParent.emit(restItems);
 
         })
 
@@ -86,14 +88,14 @@ constructor(private formBuilder: FormBuilder, private fs: FlightService, private
         .subscribe(
         restItems => {
           this.flightdata = restItems;  
-         this.shareDataToParent.emit('Rupalee');
+         this.shareDataToParent.emit(restItems);
 
             if(this.flightdata==""){
               this.fetchRecStatus='Flights are not available';
             }
          })
     }
-  }
+  } 
 
 
 }
